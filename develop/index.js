@@ -71,11 +71,30 @@ function promptUser() {
 
 
 
+
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, function(err) {
+        if (err) {
+            console.error(err);
+        }
+    });
+}
+
+
 
 // TODO: Create a function to initialize app
-function init() {}
+async function init() {
+    console.log("Welcome to README Generator")
+    try {
+        const answers = await promptUser();
+        const readMe = generateMarkdown(answers, user);
+        writeToFile("GeneratedREADME.md", readM);
+        console.log("**README file successfully created!**");
+    }catch(err) {
+        console/log(err);
+    }
+}
 
 // Function call to initialize app
 init();
